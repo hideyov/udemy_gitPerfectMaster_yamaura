@@ -80,7 +80,7 @@ $ git clone <リポジトリ名> => リモートリポジトリのファイル�
 
 ~$ git commit ：Gitのテキストエディターが立ち上がって、メッセージ付きで保存
 
-~$ git commit -m <message>：いちいち、エディターを立ち上げなくて済む
+~$ git commit -m <メッセージ>：いちいち、エディターを立ち上げなくて済む
 
 ~$ git commit -v ：エディターが立ち上がり、ファイルの変更内容を確認することができる。
 
@@ -98,10 +98,34 @@ $ git diff (<ファイル名>)：git add する前の変更分を確認（ワー
 
 $ git diff --staged：git add した後の変更分を確認（ステージとコミットの変更差分）
 
+### 変更履歴の確認
 
+$ git log --oneline ：1行で表示、 $ git log -p <ファイル名>：特定ファイルの変更分を表示、$ git log -n <コミット数>：表示するコミット数を指定
+    
+git log で表示されるハッシュ値は、コミットのIDのようなもの。
 
+### ファイルの削除を記録する
 
+コミットされた記録だけでなく、ワークツリーのファイルごと削除したい =>　$ git rm <ファイル名> / $ git rm -r <ディレクトリ名>
 
+ワークツリーにファイルは残したいが、Gitの記録からだけファイルを削除したい =>　$ git rm --cached <ファイル名>
 
+例えば、passWordの入ったファイルを間違ってGitにあげてしまったような時は、gir rm --cachedを使う。
 
+### 元の状態に戻す
 
+git rm で削除したファイルを元に戻すには $ git reset HEAD <ファイル名> に続いて、$ git checkout <ファイル名>
+
+この2段構えでファイルが復活し、git status で見ても「変更点がなく」なる。コマンドの意味は、後で詳しく。
+
+git rm --cached index.html を実行すると、ファイルは残っている。git status では、Changes to be commited（コミットすべき変更）として、index.html がdeletedされたこと、Untracked files（Gitで追跡していない、新規ファイル）としてindex.htmlがある、と表示される。
+
+git rm --cached でGitの記録から削除したファイルも、 git reset HEAD index.html で元に戻せる。
+
+### ファイルの移動を記録する
+
+$ git mv <旧ファイル> <新ファイル> これは、下記の3連続コマンドと等価。
+
+$ mv <旧ファイル> <新ファイル> => $ git rm <旧ファイル> => $ git add <新ファイル>
+
+$ 
