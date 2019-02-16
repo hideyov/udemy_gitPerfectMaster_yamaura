@@ -145,3 +145,18 @@ $ git remote add origin https://github.com/user/repo.git <-- originというシ�
 $ git push <リモート名> <ブランチ名> 具体的には $ git push origin master
 
 $ git push -u origin master <-- 初回プッシュ時にオプション -u をつけると次回以降は [git push]だけでpushできる。
+
+### GitHubの画面
+
+<>Code でファイルを選択してクリック。Rawは生ファイル、Blameは変更の責任者、Historyはコミット履歴
+
+<>Codeを押して元のページに戻る。commits は個別ファイルのコミット履歴であるHistoryとは異なり、プロジェクト自体のコミット履歴を確認できる。
+
+Clone or download <--他の人のプロジェクトから始めたい場合など
+
+## コマンドにエイリアスをつける
+
+$ git config --global alias.ci commit などで入力を楽に。--globalをつけるとPC全体の設定として~/.gitconfig (or ~/.config/git/config)に反映される。
+
+--globalをつけなければ、今自分がいるプロジェクトの下の　project/.git/configに設定が反映される。
+
