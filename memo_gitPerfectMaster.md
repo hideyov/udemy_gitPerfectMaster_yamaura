@@ -198,7 +198,9 @@ $ git reset HEAD . <- 全変更を取り消す
 
 git reset コマンドは裏側で何をやっているか。リポジトリから最新コミットの情報を取ってきて、その情報でステージの内容を上書きしている。
 
-もしgit reset コマンドを忘れても、git statusを打つと(use "git reset HEAD <file>..." to unstage)と親切に教えてくれる。
+HEADとは、今自分がいるブランチの最新のコミットのこと。つまり、$ git reset HEAD = 「最新のコミットの内容でリセット（ステージを上書き）する」
+
+もしgit reset コマンドを忘れても、git statusを打つと(use "git reset HEAD <ファイル名>..." to unstage)と親切に教えてくれる。
 
 
 
