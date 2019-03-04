@@ -208,6 +208,8 @@ $ git commit --amend : 今のステージの内容でコミットを上書きす
 
 !! リモートリポジトリにpushしたコミットは、絶対に修正してはいけない。修正可能なのは、あくまでpushする前のみ！
 
+pushした後に、そのコミットをやり直したい場合は、git commitコマンドでもう一度新しくコミットを作って修正する。
+
 ### リモートを表示する
 
 $ git remote : 登録されているリモート名しか表示されない。
@@ -218,7 +220,7 @@ $ git remote -v : 対応するURLを表示する。fetch とpushでURLを切り�
 
 チーム開発とは別に、自分でもリモートリポジトリを持っておきたい場合や、複数のチームでやりとりしていて、それぞれのチームでリポジトリを持っている場合など。
 
-$ git remote add <リモート名> <リモートURL> : 例えば、リモート名をorigin でなく bakにしてバックアップ用リポジトリを登録とかできる。
+$ git remote add <リモート名> <リモートURL> : 例えば、リモート名をorigin でなく bakにしてバックアップ用リポジトリを登録とかできる。（bakというショートカットでリモートリポジトリを登録）
 
 ### リモートから取得しよう（fetch編）
 
@@ -228,9 +230,53 @@ git fetch ではローカルリポジトリに情報を取得してくるだけ�
 
 ローカルリポジトリの、remotes/リモート/ブランチ に保存される。
 
-$ git merge : ローカルリポジトリに落として来た内容を、ワークツリーに反映させる。
+$ git merge : ローカルリポジトリに落として来た内容を、自分のワークツリーにmerge（統合）して反映させる。
 
+(練習用に)リモートリポジトリ上で、新規ファイル（home.html）を作成。Create new file -> Commit directly to the master branch -> Commit new file
 
+$ git fetch origin で情報を取ってくる。どこに保存されているのか？
+
+$ git branch -a ：git branch の全部の情報を表示(-a はall)すると、remotes/origin/master というブランチができている。今いるブランチに * がつく。
+
+先ほどの変更が反映されている remotes/origin/masterの中身を確認するには 
+
+$ git checkout remotes/origin/master ：remotes/origin/master の方に、自分のワークツリーの内容を切り替える
+
+ls で確認すると リモートリポジトリでの変更の反映が確認できる。（新規ファイルhome.htmlがある）
+
+git fetchコマンドで、remotes/origin/master に情報が取得された。
+
+$ git checkout master で元の状態に戻り、lsで確認すると、home.htmlがなく、元々の情報に戻っている。
+
+$ git merge origin/master ：取得してきたリモートリポジトリの情報を、ワークツリーに取り込む。
+
+!! コミットメッセージのエディターが立ち上がらない
+
+git fetch でローカルリポジトリに情報を取得して、その情報をワークツリーに反映させたい場合は git merge コマンドを使う。
+
+### リモートから取得しよう（pull編）
+
+$ git pull <リモート名> <ブランチ名>：リモートから情報を取得してmergeまでを、一つの手順でやりたい時、pullを使う。
+
+$ git pull origin master は $ git pull に省略可能。
+
+$ git pull === ($ git fetch origin master) + ($ git merge origin/master) / fetch とmergeを一度にやるのがpull
+
+git pull を使うと、リモートリポジトリの内容をローカルリポジトリに反映させて、その上で、ワークツリーにもその変更を一度に反映する。ワークツリーまで一度に変更反映したい場合は、git pull
+
+### fetchとpullの使い分け
+
+フェッチを基本的に使うのがおすすめ。プルは確かに楽ではあるが、挙動が非常に特殊なので注意が必要。
+
+pullの注意点「fetchした後、mergeするだけでしょ？」しかし、一部の挙動が特殊。以下のような状況を考える。
+
+ワークツリーにmasterブランチとhogeブランチ。今、masterにいる（*master）→→ $ git pull orogin hoge を実行 →→ ローカルリポジトリの remotes/origin/hoge に情報が取得される ->-> （hogeブランチでなく）masterブランチにhogeブランチがマージされてしまう！！
+
+git pullすると、今自分がいるブランチに、pullしてきたブランチの内容がmergeされる。hogeブランチの情報を取ってくる時に、自分がhogeブランチにいるつもりでうっかり別のブランチに統合してしまったら、ファイルぐちゃぐちゃになる！
+
+ちゃんと理解するまでは、git fetch して git pull というステップを踏んだ方が安全。
+
+師匠の運用ルール：自分がmasterブランチにいて、何の変更もしていない時に限ってgit pullで情報を取得する。
 
 
 
