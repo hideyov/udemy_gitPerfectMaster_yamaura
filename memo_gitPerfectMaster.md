@@ -368,3 +368,28 @@ $ git checkout feature -> $ git push origin feature
 
 念のため、ローカルリポジトリでmasterブランチに戻っておく。 $ git checkout master
 
+### マージとは、他の人の変更内容を取り込む（統合する）作業のこと。
+
+$ git merge <ブランチ名>, $ git merge <リモート名/ブランチ名>
+
+$ git merge origin/master：GitHubにあるmasterブランチを、"いま作業中の"ブランチにマージする。
+
+状況としてmasterブランチ、featureブランチがあり、featureブランチをmasterブランチにマージしたい。-> $ git merge feature
+
+すると、masterブランチの内容に、featureブランチの内容が統合されて、新しく、統合されたコミットができる。これは元のmasterの内容をベースに、featureブランチの変更分を取り込んだ内容。
+
+マージにおいて重要なことは、あくまで、ほかのブランチでの変更分を、「自分の手元に取り込める」ということ。
+
+### マージには3種類 /Fast Forward：早送りになるマージ
+
+masterブランチに、緊急のバグが発生し、急きょ修正しなくてはいけない。hotfixというブランチを新たに作り、修正してコミットする。修正内容をmasterブランチに取り込むため $ git merge hotfix する。何が起こるか。
+
+masterブランチが指すコミットファイルが、hotfixブランチが指すのと同じものになる。つまり、ブランチが枝分かれしてなかった（元々のmasterブランチの先に、hotfixブランチがある）場合は、ブランチのポインタを単純に、前に進めるだけ。
+
+
+### マージには3種類 /Fast Forward：早送りになるマージ
+### マージには3種類 /Fast Forward：早送りになるマージ
+
+
+
+
