@@ -360,5 +360,11 @@ $ git checkout -b <新規ブランチ名>：ブランチを新規作成して切
 
 feature ブランチに切り替えて、新規ファイルfeature.htmlを作成してコミットした後、$ git checkout masterでmasterブランチに戻る。lsしても、feature.html は存在していない。feature.htmlは、あくまでfeatureブランチで作成したファイルなので。このように、分岐して開発が進められている状態になる。ここで、masterブランチでmaster.html作成という、別の作業をしてみる。
 
+ここまでの状況をGitHubにもアップ。$ git push origin master した後、featureブランチに切り替えて、
 
+$ git checkout feature -> $ git push origin feature
+
+これで、GitHubにはmasterに加えてfeatureブランチができている。
+
+念のため、ローカルリポジトリでmasterブランチに戻っておく。 $ git checkout master
 
