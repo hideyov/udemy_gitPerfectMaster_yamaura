@@ -396,7 +396,17 @@ masterブランチの内容をベースにして、その内容にfeatureブラ�
 
 通常のコミットファイルはparent（親となるコミットファイル）は一つしか持たないが、マージコミットのコミットファイルは、parentを二つ持っている。
 
-### Fast ForwardとAuto Mergeの実例
+### Fast Forwardの実例
+
+状況としてmasterブランチの内容をGitHubにプッシュした後の状態。誰かがmasterブランチに変更を加え、その変更分を自分のワークツリーに取り込みたい、というシチュエーション。他人による変更を再現するため、GitHub上でファイルを変更し、コミットメッセージをつけてコミット。
+
+ターミナルにもどり、$ git pull origin master (＝ fetchとmergeを同時に実行) -> "Fast Forwarded"と表示される。
+
+$ git log --oneline　で確認すると、GitHub上で修正したコミットのメッセージがあり、masterブランチのポインターが切り替わっている＝Fast Forwardされていることがわかる。[???]
+
+### Auto Mergeの実例
+
+featureブランチに切り替え、ファイルに修正を加えてコミットする。masterブランチに切り替え、$ git merge feature を実行すると、コミットメッセージを編集するエディターが立ち上がり、すでに"Merge branch 'feature'"と書かれているのでそのまま実行。
 
 
 
