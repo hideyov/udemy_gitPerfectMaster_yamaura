@@ -410,6 +410,21 @@ featureブランチに切り替え、ファイルに修正を加えてコミッ�
 
 ### マージには3種類 /Conflict：早送りになるマージ
 
+例）masterブランチ、featureブランチのindex.htmlそれぞれに変更を加えて、その内容をコンフリクトさせる。
+
+まずmasterブランチのindex.htmlファイルを編集し、コミット。続いてfeatureブランチのindex.htmlを編集してコミット。masterブランチに切り替えて、featureブランチの内容をマージする。「CONFLICTが起きてAutomatic mergeが失敗」のメッセージ。
+
+git statusコマンドで、確認。-> both modified: index.html（両方が変更を加えた＝conflictしている）
+
+テキストエディターでindex.htmlを開く。<<<<<<<HEAD と ======= の間が、HEADに書かれていた内容。つまりmasterブランチの内容。そして、=======と >>>>>>>feature の間にはfeatureブランチに書かれていた内容。
+
+最終的な形にファイルを編集し、=======, >>>>>>>feature, <<<<<<<HEADなど不要部分を削除して、保存。
+
+もう一度 $ git status で確認。conflictしている。add, commitすると、コミットメッセージは"Merge branch feature"  
+
+「コンフリクトしても、最終的にどういう内容にしたいのかを先に記載して、コンフリクトの特別な記述などを削除してファイルの内容をきれいにしたら解決する」
 
 
+
+　
 
