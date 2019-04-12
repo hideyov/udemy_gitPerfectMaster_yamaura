@@ -424,11 +424,17 @@ git statusコマンドで、確認。-> both modified: index.html（両方が変
 
 最終的な形にファイルを編集し、=======, >>>>>>>feature, <<<<<<<HEADなど不要部分を削除して、保存。
 
-もう一度 $ git status で確認。conflictしている。add, commitすると、コミットメッセージは"Merge branch feature"  
+もう一度 $ git status で確認。「conflictしている」 => add, commitすると、コミットメッセージは"Merge branch feature"  
 
 「コンフリクトしても、最終的にどういう内容にしたいのかを先に記載して、コンフリクトの特別な記述などを削除してファイルの内容をきれいにしたら解決する」
 
+### conflict関連の事故が起きにくい運用ルール
 
+複数人で同じファイルを変更しない。
 
-　
+pullやmergeをする際に、変更中の状態をなくしておく。(commitやstashをしておく)
+
+stash - 変更中のファイルを一時保管しておくコマンド
+
+pullする時は、pullするブランチに移動してから pullする。masterブランチをpullする場合、masterブランチに移動してから、git pull origin master
 
