@@ -438,3 +438,10 @@ stash - 変更中のファイルを一時保管しておくコマンド
 
 pullする時は、pullするブランチに移動してから pullする。masterブランチをpullする場合、masterブランチに移動してから、git pull origin master
 
+## ブランチ名を変更、ブランチを削除するには
+
+$ git branch -m <ブランチ名> - 作業中のブランチの名前を変更（mはmove）
+
+$ git branch -d <ブランチ名> - 小文字の[-d]は安全なコマンド。masterにマージされていない変更が残っている場合は削除しない。
+
+$ git branch -D <ブランチ名> - masterにマージしていない変更があっても、強制削除したい時。
