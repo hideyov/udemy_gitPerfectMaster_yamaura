@@ -410,7 +410,9 @@ $ git log --oneline　で確認すると、GitHub上で修正したコミット�
 
 featureブランチに切り替え、ファイルに修正を加えてコミットする。masterブランチに切り替え、$ git merge feature を実行すると、コミットメッセージを編集するエディターが立ち上がり、すでに"Merge branch 'feature'"と書かれているのでそのまま実行。
 
-### マージには3種類 /Conflict：早送りになるマージ
+### マージには3種類 /Conflict
+
+同じファイルの同じ行に対して異なる編集を行ったとき。masterブランチの内容を優先するのか、featureブランチの内容を優先するのか、git は判断できない。
 
 例）masterブランチ、featureブランチのindex.htmlそれぞれに変更を加えて、その内容をコンフリクトさせる。
 
